@@ -50,7 +50,7 @@ void turnLeftdegree(int degree)
   stopcar();
 }
 
-int turnRightdegree(int degree)
+void turnRightdegree(int degree)
 {
   if (degree >= 45)
   {

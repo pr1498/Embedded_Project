@@ -1,8 +1,8 @@
 // defines variables for ultrasonic detector
-long duration;
 int distance;
 
 int detect_distance(){
+  long duration;
   // Clears the trigPin
   digitalWrite(PROX_TRIG_PIN, LOW);
   delayMicroseconds(2);
