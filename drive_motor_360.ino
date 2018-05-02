@@ -7,6 +7,7 @@
 #define SERVO_RIGHT_PIN 9
 #define LED_PIN 13
 #define MIC_PIN A0
+#define calibratepin  A1
 #define PROX_TRIG_PIN 23
 #define PROX_ECHO_PIN 22
 #define AVG_NUM   0xA //number of ffts to be averaged
