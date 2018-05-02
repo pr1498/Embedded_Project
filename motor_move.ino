@@ -1,7 +1,10 @@
+#define TURN_TIME_45 118 //151 for maker space
+#define RIGHT_WHEEL_FORWARD_SPEED 3
+
 void forward(int speed, int distance)
 {
   servoLeft.write(90 - speed);
-  servoRight.write(90 + 5 + speed);
+  servoRight.write(90 + RIGHT_WHEEL_FORWARD_SPEED + speed);
   if (speed == 20) delay(100 * distance);
   else if (speed == 90) delay(27 * distance);
   stopcar();
@@ -79,7 +82,7 @@ void turn(bool direction, int degree) {
     {
       servoLeft.write(112);
       servoRight.write(112);
-      delay(degree * 151 / 10);
+      delay(degree * TURN_TIME_45 / 10);
     }
     else {
       servoLeft.write(116);
@@ -99,7 +102,7 @@ void turn(bool direction, int degree) {
     {
       servoLeft.write(70);
       servoRight.write(70);
-      delay(degree * 151 / 10);
+      delay(degree * TURN_TIME_45 / 10);
     }
     else {
       servoLeft.write(66);
