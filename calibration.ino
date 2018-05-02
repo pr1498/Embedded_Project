@@ -6,6 +6,11 @@ void calibration() {
   Serial.print(", value ADC1: ");
   Serial.println(value * 3.3 / adc->getMaxValue(ADC_1), DEC);
   
+  int speedva;
+  int sensorValue = analogRead(calibratepin);
+  float voltage = sensorValue  * (5.0 / 1023.0);
+  speedva = 90 * (voltage / 3.3);
 
+  return speedva;
 }
 
