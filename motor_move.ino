@@ -1,5 +1,5 @@
-#define TURN_TIME_45 118 //151 for maker space
-#define RIGHT_WHEEL_FORWARD_SPEED 3
+#define TURN_TIME_45 140 //151 for maker space
+#define RIGHT_WHEEL_FORWARD_SPEED 5
 
 void forward(int speed, int distance)
 {

@@ -6,7 +6,6 @@
 
 unsigned int sample_duration_us = 500000; //set to 1/2 sec, since 1 second beeps are being generated
 unsigned long microseconds, microseconds_start;
-uint32_t total_avg; //to store adc output
 uint16_t th_cnt, total_cnt;
 
 
@@ -17,10 +16,16 @@ uint16_t th_cnt, total_cnt;
 double vReal[samples];
 double vImag[samples];
 
-uint32_t sample_data(uint16_t freq_num) {
-  uint32_t cnt = 0;
-  uint16_t freq_idx_local = freq_idx[freq_num];
+void sample_data() {
+  unsigned long cnt = 0;
+
   microseconds_start = micros();
+
+  //set previous avg to zero
+  for (int freq_num = 0; freq_num < NUM_FREQ ; freq_num++) {
+    total_avg[freq_num] = 0;
+  }
+
   while (micros() < microseconds_start + sample_duration_us) {
     cnt++;
     /*SAMPLING*/
@@ -35,20 +40,44 @@ uint32_t sample_data(uint16_t freq_num) {
       }
     }
 
-    //FFT.Windowing(vReal, samples, FFT_WIN_TYP_HAMMING, FFT_FORWARD);  /* Weigh data */
-    FFT.Compute(FFT_FORWARD); /* Compute FFT */
-    FFT.ComplexToMagnitude(); /* Compute magnitudes */
-    Serial.println("Computed magnitudes:");
-    PrintVector(vReal, (samples >> 1), SCL_FREQUENCY);
+    //uncomment this
+   // FFT.Windowing(vReal, samples, FFT_WIN_TYP_HAMMING, FFT_FORWARD);  /* Weigh data */
+    FFT.Compute(vReal, vImag, samples, FFT_FORWARD); /* Compute FFT */
+    FFT.ComplexToMagnitude(vReal, vImag, samples); /* Compute magnitudes */
+//
+//    double x = FFT.MajorPeak(vReal, samples, samplingFrequency);
+//    Serial.print("Major Peak ");
+//    Serial.println(x, 0); //Print out what frequency is the most dominant.
 
-    total_avg += vReal[freq_idx_local];
+    //while(1); /* Run Once */
+//        Serial.println("Computed magnitudes:");
+//        PrintVector(vReal, (samples >> 1), SCL_FREQUENCY);
 
-    Serial.println();
+    //    Serial.print("Freq Indx ");
+    //    Serial.println(freq_idx_local);
+    //    Serial.print(" For frequency ");
+    //    Serial.println((freq_num * 500 + 5000));
+    //sum up data in 3 bins
+
+    for (int freq_num = 0; freq_num < NUM_FREQ ; freq_num++) {
+      uint16_t freq_idx_local = freq_idx[freq_num];
+      double data = 0;
+      for (int i = freq_idx_local - 1 ; i <= (freq_idx_local + 1 ); i++) {
+        data += vReal[i];
+      }
+      total_avg[freq_num] += data;
+    }
+    //  Serial.println(total_avg);
   }
-  total_avg = total_avg / cnt;
-  Serial.print("Total avg : ");
-  Serial.println(total_avg);
-  return total_avg;
+  for (int i = 0; i < NUM_FREQ; i++) {
+    total_avg[i] = total_avg[i] / cnt;
+    //    Serial.print("Total avg : ");
+    //    Serial.print(total_avg[i]);
+    //    Serial.print(" for count ");
+    //    Serial.println(cnt);
+  }
+
+
 }
 
 void PrintVector(double *vData, uint16_t bufferSize, uint8_t scaleType)
