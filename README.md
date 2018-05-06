@@ -1,2 +1,2 @@
 # Embedded_Project
-Please use fft_01, that's the latest version
+Folder FFT0, that's the latest version
