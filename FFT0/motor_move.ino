@@ -1,5 +1,5 @@
-#define TURN_TIME_LEFT 120 // 51for maker space 120 for left less rthan 45
-#define TURN_TIME_RIGHT 110 //
+#define TURN_TIME_LEFT 115 // 51for maker space 120 for left less rthan 45
+#define TURN_TIME_RIGHT 125 //
 #define RIGHT_WHEEL_FORWARD_SPEED -1.7//or 1.6
 
 
