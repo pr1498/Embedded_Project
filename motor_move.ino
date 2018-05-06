@@ -1,5 +1,5 @@
 #define TURN_TIME_LEFT 120 // 51for maker space 120 for left less rthan 45
- #define TURN_TIME_RIGHT 110 //
+#define TURN_TIME_RIGHT 110 //
 #define RIGHT_WHEEL_FORWARD_SPEED -1.7//or 1.6
 
 
@@ -31,6 +31,7 @@ void turnRight()
   servoLeft.write(0);
   servoRight.write(90);
 }
+
 
 void stopcar()
 {
@@ -89,7 +90,7 @@ void turn(bool direction, int degree) {
     else {
       servoLeft.write(116);
       servoRight.write(116);
-      delay(degree * 63 / 10);     
+      delay(degree * 100 / 10);     
     }
     stopcar();
   }
@@ -109,7 +110,7 @@ void turn(bool direction, int degree) {
     else {
       servoLeft.write(66);
       servoRight.write(66);
-      delay(degree * 60 / 10);    
+      delay(degree * 90 / 10);    
     }
     stopcar();
   }
