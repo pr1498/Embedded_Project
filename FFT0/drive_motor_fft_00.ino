@@ -14,15 +14,13 @@ arduinoFFT FFT = arduinoFFT(); /* Create FFT object */
 #define PROX_TRIG_PIN 23
 #define PROX_ECHO_PIN 22
 #define AVG_NUM   0xA //number of ffts to be averaged
-#define ONE_SEC 250 //in milliseconds, since the beep is 1 sec long
-#define THRESHOLD_VAL 250 //236 when noisy?? 
 #define INVALID_VAL   250 //outside the valid count of frequencies, we are only going to get 10 frequencies at max
 #define NUM_TURNS     15
 
 //------Frequencies to detect-----------//
 #define LAST_FREQUENCY 9500
 #define SAMPLING_FREQUENCY 20000
-#define NUM_FREQ   10 //set for detecting 2 right now
+#define NUM_FREQ   10 
 //--------------------------------------//
 
 
