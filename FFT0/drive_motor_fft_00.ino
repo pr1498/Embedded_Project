@@ -181,4 +181,9 @@ void move_forward() {
       Serial.println("Moving towards last frequency ");
     }
   }
+
+  //update distance again, since this is used by the main loop to 
+  //determine if we have reached the desired beacon or not
+  dist = detect_distance();
+  if(dist > 400) dist = 0;
 }
