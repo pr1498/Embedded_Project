@@ -4,7 +4,7 @@
 #define SCL_FREQUENCY 0x02
 #define SCL_PLOT 0x03
 
-unsigned int sample_duration_us = 500000; //set to 1/2 sec, since 1 second beeps are being generated
+unsigned int sample_duration_us = 1000000; //set to 1/2 sec, since 1 second beeps are being generated
 unsigned long microseconds, microseconds_start;
 uint16_t th_cnt, total_cnt;
 
