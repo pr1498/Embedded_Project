@@ -185,7 +185,7 @@ void move_forward() {
   }
   Serial.print("Distance ");
   Serial.println(dist);
-  if (dist > 30 && dist > 30 && dist > 30) {
+  if (dist > 30 && distl > 30 && distr > 30) {
     forward(20, 30);
   }
   else {
