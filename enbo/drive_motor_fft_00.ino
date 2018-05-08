@@ -181,9 +181,9 @@ void loop() {
           //forward(20, 10);////10 to 5
           //reverse(20,10);
           //if (dist_right>dist_left){
-          //turnLeftdegree(30);}
+          //turn(1,30);}
           //else {
-          //turnRightdegree(5);}
+          //turn(0,30);}
           forward(20, 10);
         }
       }
