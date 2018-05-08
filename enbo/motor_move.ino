@@ -5,8 +5,12 @@
 
 void forward(int speed, int distance)
 {
-  servoLeft.write(90 - speed);
+  servoLeft.write(90);
   servoRight.write(90 + RIGHT_WHEEL_FORWARD_SPEED + speed);
+  
+  servoRightforward.write(90);
+  servoLeftforward.write(90 - speed);
+  
   if (speed == 20) delay(100 * distance);
   else if (speed == 90) delay(27 * distance);
   stopcar();
@@ -15,42 +19,55 @@ void forward(int speed, int distance)
 void reverse(int speed, int distance)
 {
   servoLeft.write(90 + speed);
-  servoRight.write(90 - 5 - speed);
+  servoRight.write(90);
+  servoRightforward.write(90- RIGHT_WHEEL_FORWARD_SPEED - speed);
+  servoLeftforward.write(90);
+  
   if (speed == 20) delay(100 * distance);
   else if (speed == 90) delay(27 * distance);
   stopcar();
 }
 
-void turnLeft()
+/*void turnLeft()
 {
   servoLeft.write(90);
   servoRight.write(120);
+  //servoLeftforward.write(90);
+  //servoRightforward.write(120);
 }
 void turnRight()
 {
   servoLeft.write(0);
   servoRight.write(90);
-}
+  //servoLeftforward.write(0);
+  //servoRightforward.write(90);
+}*/
 
 
 void stopcar()
 {
   servoLeft.write(90);
   servoRight.write(90);
+  servoLeftforward.write(90);
+  servoRightforward.write(90);
 }
 
-void turnLeftdegree(int degree)
+/*void turnLeftdegree(int degree)
 {
   if (degree >= 45)
   {
     servoLeft.write(118);
     servoRight.write(118);
+   // servoLeftforward.write(118);
+  //servoRightforward.write(118);
     delay(degree * 100 / 10);
   }
   else
   {
     servoLeft.write(110);
     servoRight.write(110);
+    //servoLeftforward.write(110);
+  //servoRightforward.write(110);
     delay(degree * 200 / 10);
   }
   stopcar();
@@ -71,7 +88,7 @@ void turnRightdegree(int degree)
     delay(degree * 200 / 10);
   }
   stopcar();
-}
+}*/
 
 void turn(bool direction, int degree) {
   if (direction == 1) {
@@ -79,6 +96,8 @@ void turn(bool direction, int degree) {
     {
       servoLeft.write(115);
       servoRight.write(115);
+      servoLeftforward.write();
+      servoRightforward.write();
       delay(degree * 88 / 10);
     }
     else if(degree >= 30 && degree < 45)
