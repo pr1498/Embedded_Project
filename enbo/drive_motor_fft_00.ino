@@ -179,12 +179,11 @@ void loop() {
         //hopefully there won't be any beacon right in front when we try to move
         if (dist_right < 15 || dist_left < 15) {
           //forward(20, 10);////10 to 5
-          reverse(20,10);
-          forward(20, 5)
-          if (dist_right>dist_left){
-          turnLeftdegree(30);}
-          else {
-          turnRightdegree(5);}
+          //reverse(20,10);
+          //if (dist_right>dist_left){
+          //turnLeftdegree(30);}
+          //else {
+          //turnRightdegree(5);}
           forward(20, 10);
         }
       }
