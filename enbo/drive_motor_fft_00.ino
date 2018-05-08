@@ -10,6 +10,8 @@ arduinoFFT FFT = arduinoFFT(); /* Create FFT object */
 #define POT_PIN        A1
 #define SERVO_LEFT_PIN 10
 #define SERVO_RIGHT_PIN 9
+//#define SERVO_LEFT_FORWARD_PIN yy
+//#define SERVO_RIGHT_FORWARD_PIN xx
 #define LED_PIN 13
 #define MIC_PIN A0
 #define PROX_TRIG_PIN 23
@@ -34,6 +36,10 @@ arduinoFFT FFT = arduinoFFT(); /* Create FFT object */
 //servo object
 Servo servoLeft;
 Servo servoRight;
+//Servo servoLeftforward;
+//Servo servoRightforward;
+
+
 uint16_t frequency[10] = {5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000, 9500};
 unsigned int sampling_period_us;
 const uint16_t samples = 256; //This value MUST ALWAYS be a power of 2
@@ -63,6 +69,8 @@ void setup() {
   //set servo pins
   servoLeft.attach(SERVO_LEFT_PIN);
   servoRight.attach(SERVO_RIGHT_PIN);
+  //servoLeftforward.attach(SERVO_LEFT_FORWARD_PIN);
+  //servoRightforward.attach(SERVO_RIGHT_FORWARD_PIN);
 
   // servo_test();
 
@@ -171,11 +179,13 @@ void loop() {
         //hopefully there won't be any beacon right in front when we try to move
         if (dist_right < 15 || dist_left < 15) {
           //forward(20, 10);////10 to 5
-          forward(20, 5);
-          //if (dist_right>dist_left){
-          //turnLeftdegree(5);}
-          //else {
-          //turnRightdegree(5);}
+          reverse(20,10);
+          forward(20, 5)
+          if (dist_right>dist_left){
+          turnLeftdegree(30);}
+          else {
+          turnRightdegree(5);}
+          forward(20, 10);
         }
       }
     }
