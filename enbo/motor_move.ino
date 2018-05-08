@@ -95,38 +95,49 @@ void turn(bool direction, int degree) {
     if (degree >= 45 && degree <= 90)
     {
       servoLeft.write(115);
-      servoRight.write(115);
-      servoLeftforward.write();
-      servoRightforward.write();
+      servoRight.write(90);
+      servoLeftforward.write(90);
+      servoRightforward.write(115);
       delay(degree * 88 / 10);
     }
     else if(degree >= 30 && degree < 45)
     {
       servoLeft.write(115);
-      servoRight.write(115);
+      servoRight.write(90);
+      servoLeftforward.write(90);
+      servoRightforward.write(115);
+      RIGHT_WHEEL_FORWARD_SPEED - speed
       delay(degree * TURN_TIME_LEFT_LAB/ 10);
     }
     else if(degree >= 20 && degree < 30)
     {
       servoLeft.write(115);
-      servoRight.write(115);
+      servoRight.write(90);
+      servoLeftforward.write(90);
+      servoRightforward.write(115);
       delay(degree * 142/ 10);
     }
     else if(degree >= 10 && degree < 20)
     {
       servoLeft.write(115);
-      servoRight.write(115);
+      servoRight.write(90);
+      servoLeftforward.write(90);
+      servoRightforward.write(115);
       delay(degree * 145/ 10);
     }
     else if(degree >= 0 && degree < 10)
     {
-      servoLeft.write(115);
-      servoRight.write(115);
+     servoLeft.write(115);
+      servoRight.write(90);
+      servoLeftforward.write(90);
+      servoRightforward.write(115);
       delay(degree * 275/ 10);
     }
     else {
       servoLeft.write(115);
-      servoRight.write(115);
+      servoRight.write(90);
+      servoLeftforward.write(90);
+      servoRightforward.write(115);
       delay(degree * 80 / 10);     
     }
     stopcar();
