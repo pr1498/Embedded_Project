@@ -1,3 +1,4 @@
+//For calibrating the Servo motors
 void servo_test() { 
 
 //forward(20,25);

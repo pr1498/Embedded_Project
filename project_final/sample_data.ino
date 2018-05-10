@@ -1,3 +1,4 @@
+//----Functions to sample data and do FFT analysis----//
 
 #define SCL_INDEX 0x00
 #define SCL_TIME 0x01

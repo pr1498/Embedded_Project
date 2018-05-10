@@ -1,8 +1,8 @@
-/*
+//For testing FFT outputs and fining threshold values
 unsigned long cnt = 0;
 unsigned long avg[NUM_FREQ];
 
-void loop() {
+void test_fft() {
 
   cnt++;
   for (int i = 0 ; i < 100; i++) {
@@ -22,4 +22,3 @@ void loop() {
   }
   while (1);
 }
-*/

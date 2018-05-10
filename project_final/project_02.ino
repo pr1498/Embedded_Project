@@ -1,3 +1,10 @@
+//--------Embedded Project - Group 2 ----------//
+//-- N18585222---//
+//-- N11454737---//
+//-- N13875593---//
+//-- N19048271---//
+//-------------------------------------------//
+
 #include <Servo.h>
 #include <arduinoFFT.h>
 
@@ -13,7 +20,6 @@ arduinoFFT FFT = arduinoFFT(); /* Create FFT object */
 #define MIC_PIN A0
 #define PROX_TRIG_PIN 23
 #define PROX_ECHO_PIN 22
-
 //--------------------------------//
 
 #define AVG_NUM   0xA //number of ffts to be averaged
@@ -101,7 +107,6 @@ void loop() {
 
   if (freq_to_detect != INVALID_VAL) {
 
-    //while(angle <)
     if (max_degree[freq_to_detect] > 180) {
       Serial.print("Turn degree right");
       Serial.println(360 - max_degree[freq_to_detect]);
@@ -113,12 +118,6 @@ void loop() {
       Serial.println(max_degree[freq_to_detect]);
       turn(1, max_degree[freq_to_detect]);
       direction = 1;
-    }
-
-    //since we only sample for half a second , we might turn an extra amount, depending upon where we sampled the max.
-    //but this doesn't matter if it's not the last beacon
-    if (frequency[freq_to_detect] == LAST_FREQUENCY) {
-
     }
 
     //if finish is 1 or redo is 1 or tone_done is 1 break
@@ -133,6 +132,7 @@ void loop() {
         freq_amp_3[freq] = 0;
       }
 
+      //after moving forward check left and right for the tone, for course correction
       for (int i = 0; i < 2; i++) {
         sample_data();
         for (int freq = 0; freq < NUM_FREQ; freq++) {
@@ -176,7 +176,7 @@ void loop() {
 
       for (unsigned int i = 0; i < NUM_FREQ; i++) {
         freq_amp_new[i] = freq_amp_new[i];
-        //we don't need to look at nay more frequencies when we are at the end
+        //we don't need to look at any more frequencies when we are at the end
         if (frequency[freq_to_detect] != LAST_FREQUENCY && i > freq_to_detect && freq_amp_new[i] > threshold_val[i] && tone_done[i] != 1) {
           new_frequency = 1;
           Serial.print("New Frequency detected");
@@ -195,6 +195,7 @@ void loop() {
           digitalWrite(LED_PIN, 1);
         }
       }
+      //to avoid hitting turn to the side
       if (( dist_after < 15) && finish != 1) {
         move_side();
       }
@@ -252,7 +253,6 @@ void move_forward() {
   //update distance again, since this is used by the main loop to
   //determine if we have reached the desired beacon or not
   dist_after       = detect_distance();
-
 }
 
 void move_side() {

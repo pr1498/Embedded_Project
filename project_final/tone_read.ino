@@ -1,4 +1,4 @@
-
+//--- Analyze FFT data, make decisions about which frequency to detect---//
 unsigned long count = 0;
 
 void tone_read() {
@@ -41,42 +41,6 @@ void tone_read() {
     turn(1, (360 / NUM_TURNS)); //turn left by 10 degrees, for 360 degrees
 
   }
-
-  //initialization to 0s
-//  for (int i = 0; i < NUM_FREQ; i++) {
-//    max_freq_amp[i] = 0;
-//    max_degree[i] = 0;
-//    freq_amp_new[i] = 0;
-//  }
-//
-//  //running average////////////////////
-//  for (int freq = 0; freq < NUM_FREQ; freq++) {
-//    for (int j = 0; j < NUM_TURNS; j++) {
-//      for (int i = j - 1; i <= j + 1; i++) {
-//        int k = i;
-//        if (i < 0) k = NUM_TURNS + i;
-//        else if (i >= NUM_TURNS) k = i - NUM_TURNS;
-//        pattern_scaled[k][freq] += pattern[k][freq];
-//        //                Serial.print(k);
-//        //                Serial.print(" ");
-//        //                Serial.println(pattern[k][freq]);
-//      }
-//      //setting the value of max amplitude, and the angle at which max amplitude is seen
-//      if (pattern_scaled[j][freq] / 3 >= max_freq_amp[freq]) {
-//        max_freq_amp[freq] = pattern_scaled[j][freq] / 3;
-//        max_degree[freq] = j * 360 / NUM_TURNS;
-//      }
-//    }
-//
-//    Serial.print("For frequency number ");
-//    Serial.print(freq * 500 + 5000 );
-//    Serial.print(" New max ampl ");
-//    Serial.println(max_freq_amp[freq]);
-//    Serial.print("New max degree ");
-//    Serial.println(max_degree[freq]);
-//  }
-
-  /////////////////////////////////////////////////////
 
   uint32_t max_freq_avg = 0, second_max_avg = 0, max_num = 0, second_max_num = 0;
 
