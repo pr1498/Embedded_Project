@@ -73,7 +73,7 @@ void setup() {
   servoRightforward.attach(SERVO2_RIGHT_PIN);
 
   //  servo_test();
-
+ //test_fft();
   Serial.println("START");
 }
 
@@ -121,7 +121,7 @@ void loop() {
     }
 
     //if finish is 1 or redo is 1 or tone_done is 1 break
-    while (new_frequency != 1 && finish != 1 && redo != 1 && tone_done[freq_to_detect] != 1 ) {
+    while (finish != 1 && redo != 1 && tone_done[freq_to_detect] != 1 ) {
 
       move_forward();
 
@@ -172,19 +172,9 @@ void loop() {
       Serial.print("Frequency amplitude = ");
       Serial.println(freq_amp_new[freq_to_detect]);
       //amplitude should be increasing if we are moving in the right direction
-      if ( freq_amp_new[freq_to_detect] < 0.6 * max_freq_amp[freq_to_detect]) redo = 1;
-
-      for (unsigned int i = 0; i < NUM_FREQ; i++) {
-        freq_amp_new[i] = freq_amp_new[i];
-        //we don't need to look at any more frequencies when we are at the end
-        if (frequency[freq_to_detect] != LAST_FREQUENCY && i > freq_to_detect && freq_amp_new[i] > threshold_val[i] && tone_done[i] != 1) {
-          new_frequency = 1;
-          Serial.print("New Frequency detected");
-          Serial.println((i * 500) + 5000);
-        }
-      }
-      
-      if (redo != 1 && (dist < 15 || dist_after < 15)) {
+      if ( freq_amp_new[freq_to_detect] < 0.4 * max_freq_amp[freq_to_detect]) redo = 1;
+    
+      if (redo != 1 && (dist <= 10 || dist_after <= 10)) {
         tone_done[freq_to_detect] = 1;
         prev_freq_done = freq_to_detect;
         Serial.print("Finished searching for frequency ");
@@ -196,7 +186,7 @@ void loop() {
         }
       }
       //to avoid hitting turn to the side
-      if (( dist_after < 15) && finish != 1) {
+      if (( dist_after <= 10) && finish != 1) {
         move_side();
       }
     }
@@ -231,13 +221,17 @@ void loop() {
 void move_forward() {
   float dist_local = 6000;
   uint16_t cnt = 0;
+  unsigned long time_start, time_end;
   move_motor();
   dist = detect_distance();
-  dist_local = dist;
-  while (dist > 10 && (dist_local - dist) < 25) {
+  //dist_local = dist;
+  time_start = micros();
+  time_end = micros();
+  while (dist > 10 && (time_end - time_start) < 1250000) {
     dist = detect_distance();
     Serial.print("Distance ");
     Serial.println(dist);
+    time_end = micros();
   }
   
   stopcar();
@@ -258,5 +252,17 @@ void move_forward() {
 void move_side() {
   turn(1, 45);
   move_forward();
+}
+
+int find_max_freq() {
+  double max_data_local = 0;
+  int max_freq_local = -1;
+  for(int i=1 ; i < NUM_FREQ ; i++){
+    if(total_avg[i] > max_data_local){
+      max_data_local = total_avg[i];
+      max_freq_local = i;
+    }
+  }
+  return max_freq_local;
 }
 

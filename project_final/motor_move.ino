@@ -54,35 +54,35 @@ void turn(bool direction, int degree) {
       servoRight.write(115);
       servoLeftforward.write(115);
       servoRightforward.write(115);
-      delay(degree * 160 / 10);
+      delay(degree * 180 / 10);
     }
     else if (degree >= 30 && degree < 45) {
       servoLeft.write(115);
       servoRight.write(115);
       servoLeftforward.write(115);
       servoRightforward.write(115);
-      delay(degree * 140 / 10);
+      delay(degree * 160 / 10);
     }
     else if (degree >= 45 && degree < 90) {
       servoLeft.write(115);
       servoRight.write(115);
       servoLeftforward.write(115);
       servoRightforward.write(115);
-      delay(degree * 130 / 10);
+      delay(degree * 153 / 10);
     }
     else if (degree >= 90 && degree < 120) {
       servoLeft.write(115);
       servoRight.write(115);
       servoLeftforward.write(115);
       servoRightforward.write(115);
-      delay(degree *  120 / 10);
+      delay(degree *  140 / 10);
     }
     else if (degree >= 120 && degree <= 180) {
       servoLeft.write(115);
       servoRight.write(115);
       servoLeftforward.write(115);
       servoRightforward.write(115);
-      delay(degree * 120 / 10);
+      delay(degree * 131 / 10);
     }
     else if (degree == 0) {
       servoLeft.write(90);
@@ -100,14 +100,14 @@ void turn(bool direction, int degree) {
       servoRight.write(55);
       servoLeftforward.write(5);
       servoRightforward.write(55);
-      delay(degree * 130 / 10);
+      delay(degree * 143 / 10);
     }
     else if (degree >= 30 && degree < 45) {
       servoLeft.write(55);
       servoRight.write(55);
       servoLeftforward.write(55);
       servoRightforward.write(55);
-      delay(degree * 105 / 10);
+      delay(degree * 118 / 10);
     }
     else if (degree >= 45 && degree < 90)
     {
@@ -115,21 +115,21 @@ void turn(bool direction, int degree) {
       servoRight.write(55);
       servoLeftforward.write(55);
       servoRightforward.write(55);
-      delay(degree * 85 / 10);
+      delay(degree * 97 / 10);
     }
     else if (degree >= 90 && degree < 120) {
       servoLeft.write(55);
       servoRight.write(55);
       servoLeftforward.write(55);
       servoRightforward.write(55);
-      delay(degree * 70 / 10);
+      delay(degree * 80 / 10);
     }
     else if (degree >= 120 && degree <= 180) {
       servoLeft.write(55);
       servoRight.write(55);
       servoLeftforward.write(55);
       servoRightforward.write(55);
-      delay(degree * 70 / 10);
+      delay(degree * 77 / 10);
     }
     else if (degree == 0) {
       servoLeft.write(90);

@@ -50,8 +50,8 @@ void sample_data() {
 //        Serial.print("Major Peak ");
 //        Serial.println(x, 0); //Print out what frequency is the most dominant.
 //
-            Serial.println("Computed magnitudes:");
-            PrintVector(vReal, (samples >> 1), SCL_FREQUENCY);
+//            Serial.println("Computed magnitudes:");
+//            PrintVector(vReal, (samples >> 1), SCL_FREQUENCY);
 
     for (int freq_num = 0; freq_num < NUM_FREQ ; freq_num++) {
       uint16_t freq_idx_local = freq_idx[freq_num];

@@ -72,12 +72,7 @@ void tone_read() {
     freq_to_detect = INVALID_VAL;
   }
   else {
-    //if 1st freq is greater and is above threshold
-    if (second_max_num > max_num)
-    {
-      freq_to_detect = second_max_num;
-    }
-    else freq_to_detect = max_num;
+    freq_to_detect = max_num;
   }
 
   Serial.print("Frequency to detect = ");
