@@ -214,6 +214,7 @@ void loop() {
       direction = 1;
     }
     move_forward();
+    move_side();
   }
 }
 
